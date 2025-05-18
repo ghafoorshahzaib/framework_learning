@@ -7,11 +7,9 @@ def get_logger(name):
     if not logger.handlers:
         logger.setLevel(logging.DEBUG)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        # Console handler
         ch = logging.StreamHandler()
         ch.setFormatter(formatter)
         logger.addHandler(ch)
-        # File handler with directory creation
         log_dir = 'logs'
         if not os.path.exists(log_dir):
             try:
