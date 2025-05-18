@@ -3,11 +3,332 @@
   <head>
     <meta charset="utf-8"/>
     <title id="head-title">report.html</title>
-      <link href="assets\style.css" rel="stylesheet" type="text/css"/>
+      <style type="text/css">body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  /* do not increase min-width as some may use split screens */
+  min-width: 800px;
+  color: #999;
+}
+
+h1 {
+  font-size: 24px;
+  color: black;
+}
+
+h2 {
+  font-size: 16px;
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+a {
+  color: #999;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/******************************
+ * SUMMARY INFORMATION
+ ******************************/
+#environment td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  vertical-align: top;
+}
+#environment tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+#environment ul {
+  margin: 0;
+  padding: 0 20px;
+}
+
+/******************************
+ * TEST RESULT COLORS
+ ******************************/
+span.passed,
+.passed .col-result {
+  color: green;
+}
+
+span.skipped,
+span.xfailed,
+span.rerun,
+.skipped .col-result,
+.xfailed .col-result,
+.rerun .col-result {
+  color: orange;
+}
+
+span.error,
+span.failed,
+span.xpassed,
+.error .col-result,
+.failed .col-result,
+.xpassed .col-result {
+  color: red;
+}
+
+.col-links__extra {
+  margin-right: 3px;
+}
+
+/******************************
+ * RESULTS TABLE
+ *
+ * 1. Table Layout
+ * 2. Extra
+ * 3. Sorting items
+ *
+ ******************************/
+/*------------------
+ * 1. Table Layout
+ *------------------*/
+#results-table {
+  border: 1px solid #e6e6e6;
+  color: #999;
+  font-size: 12px;
+  width: 100%;
+}
+#results-table th,
+#results-table td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  text-align: left;
+}
+#results-table th {
+  font-weight: bold;
+}
+
+/*------------------
+ * 2. Extra
+ *------------------*/
+.logwrapper {
+  max-height: 230px;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+}
+.logwrapper.expanded {
+  max-height: none;
+}
+.logwrapper.expanded .logexpander:after {
+  content: "collapse [-]";
+}
+.logwrapper .logexpander {
+  z-index: 1;
+  position: sticky;
+  top: 10px;
+  width: max-content;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 7px;
+  margin: 10px 0 10px calc(100% - 80px);
+  cursor: pointer;
+  background-color: #e6e6e6;
+}
+.logwrapper .logexpander:after {
+  content: "expand [+]";
+}
+.logwrapper .logexpander:hover {
+  color: #000;
+  border-color: #000;
+}
+.logwrapper .log {
+  min-height: 40px;
+  position: relative;
+  top: -50px;
+  height: calc(100% + 50px);
+  border: 1px solid #e6e6e6;
+  color: black;
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  padding: 5px;
+  padding-right: 80px;
+  white-space: pre-wrap;
+}
+
+div.media {
+  border: 1px solid #e6e6e6;
+  float: right;
+  height: 240px;
+  margin: 0 5px;
+  overflow: hidden;
+  width: 320px;
+}
+
+.media-container {
+  display: grid;
+  grid-template-columns: 25px auto 25px;
+  align-items: center;
+  flex: 1 1;
+  overflow: hidden;
+  height: 200px;
+}
+
+.media-container--fullscreen {
+  grid-template-columns: 0px auto 0px;
+}
+
+.media-container__nav--right,
+.media-container__nav--left {
+  text-align: center;
+  cursor: pointer;
+}
+
+.media-container__viewport {
+  cursor: pointer;
+  text-align: center;
+  height: inherit;
+}
+.media-container__viewport img,
+.media-container__viewport video {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+.media__name,
+.media__counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 0 0 25px;
+  align-items: center;
+}
+
+.collapsible td:not(.col-links) {
+  cursor: pointer;
+}
+.collapsible td:not(.col-links):hover::after {
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.col-result {
+  width: 130px;
+}
+.col-result:hover::after {
+  content: " (hide details)";
+}
+
+.col-result.collapsed:hover::after {
+  content: " (show details)";
+}
+
+#environment-header h2:hover::after {
+  content: " (hide details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#environment-header.collapsed h2:hover::after {
+  content: " (show details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/*------------------
+ * 3. Sorting items
+ *------------------*/
+.sortable {
+  cursor: pointer;
+}
+.sortable.desc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: -12.5px;
+  border: 10px solid #4caf50;
+  border-bottom: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.sortable.asc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: 12.5px;
+  border: 10px solid #4caf50;
+  border-top: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.hidden, .summary__reload__button.hidden {
+  display: none;
+}
+
+.summary__data {
+  flex: 0 0 550px;
+}
+.summary__reload {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+}
+.summary__reload__button {
+  flex: 0 0 300px;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  background-color: #4caf50;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.summary__reload__button:hover {
+  background-color: #46a049;
+}
+.summary__spacer {
+  flex: 0 0 550px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters,
+.collapse {
+  display: flex;
+  align-items: center;
+}
+.filters button,
+.collapse button {
+  color: #999;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.filters button:hover,
+.collapse button:hover {
+  color: #ccc;
+}
+
+.filter__label {
+  margin-right: 10px;
+}
+
+      </style>
+    
   </head>
   <body>
     <h1 id="title">report.html</h1>
-    <p>Report generated on 18-May-2025 at 13:10:21 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
+    <p>Report generated on 18-May-2025 at 14:24:39 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
         v4.1.1</p>
     <div id="environment-header">
       <h2>Environment</h2>
@@ -61,7 +382,7 @@
         <h2>Summary</h2>
         <div class="additional-summary prefix">
         </div>
-        <p class="run-count">3 tests took 00:00:33.</p>
+        <p class="run-count">3 tests took 00:00:34.</p>
         <p class="filter">(Un)check the boxes to filter the results.</p>
         <div class="summary__reload">
           <div class="summary__reload__button hidden" onclick="location.reload()">
@@ -108,7 +429,7 @@
     </table>
   </body>
   <footer>
-    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.11.5&#34;, &#34;Platform&#34;: &#34;Windows-10-10.0.26100-SP0&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.3.5&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;}}, &#34;tests&#34;: {&#34;tests/test_login.py::test_valid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_valid_login&#34;, &#34;duration&#34;: &#34;00:00:13&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_valid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:13&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stderr call -----------------------------\n2025-05-18 13:09:51,251 - INFO - Starting test_valid_login\n2025-05-18 13:09:53,278 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\n2025-05-18 13:09:53,279 - INFO - Attempting to log in with username: admin@cpcgr.com\n2025-05-18 13:09:55,544 - INFO - Login button clicked\n2025-05-18 13:09:55,544 - INFO - Login attempt completed\n2025-05-18 13:09:55,548 - DEBUG - Retrieving welcome text\n2025-05-18 13:09:59,063 - DEBUG - Welcome text retrieved: Total Organizations\n2025-05-18 13:09:59,064 - DEBUG - Welcome text: Total Organizations\n2025-05-18 13:09:59,064 - INFO - Test passed: Welcome text verified\n\n------------------------------ Captured log call -------------------------------\nINFO     test_login:test_login.py:42 Starting test_valid_login\nDEBUG    test_login:test_login.py:44 Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\nINFO     pages.login_page:login_page.py:68 Attempting to log in with username: admin@cpcgr.com\nINFO     pages.login_page:login_page.py:74 Login button clicked\nINFO     test_login:test_login.py:47 Login attempt completed\nDEBUG    pages.login_page:login_page.py:77 Retrieving welcome text\nDEBUG    pages.login_page:login_page.py:82 Welcome text retrieved: Total Organizations\nDEBUG    test_login:test_login.py:49 Welcome text: Total Organizations\nINFO     test_login:test_login.py:51 Test passed: Welcome text verified\n\n&#34;}], &#34;tests/test_login.py::test_invalid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_invalid_login&#34;, &#34;duration&#34;: &#34;00:00:10&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_invalid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:10&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stderr call -----------------------------\n2025-05-18 13:10:04,068 - INFO - Starting test_invalid_login\n2025-05-18 13:10:05,746 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\n2025-05-18 13:10:05,746 - INFO - Attempting to log in with username: wrong_user@example.com\n2025-05-18 13:10:07,887 - INFO - Login button clicked\n2025-05-18 13:10:07,888 - INFO - Login with invalid credentials attempted\n2025-05-18 13:10:07,888 - DEBUG - Checking for error message\n2025-05-18 13:10:09,112 - DEBUG - Error message retrieved: Error\n2025-05-18 13:10:09,112 - DEBUG - Error message: Error\n2025-05-18 13:10:09,112 - INFO - Test passed: Invalid login detected\n\n------------------------------ Captured log call -------------------------------\nINFO     test_login:test_login.py:55 Starting test_invalid_login\nDEBUG    test_login:test_login.py:57 Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\nINFO     pages.login_page:login_page.py:68 Attempting to log in with username: wrong_user@example.com\nINFO     pages.login_page:login_page.py:74 Login button clicked\nINFO     test_login:test_login.py:60 Login with invalid credentials attempted\nDEBUG    pages.login_page:login_page.py:86 Checking for error message\nDEBUG    pages.login_page:login_page.py:92 Error message retrieved: Error\nDEBUG    test_login:test_login.py:62 Error message: Error\nINFO     test_login:test_login.py:65 Test passed: Invalid login detected\n\n&#34;}], &#34;tests/test_login.py::test_empty_username&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_empty_username&#34;, &#34;duration&#34;: &#34;00:00:10&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_empty_username&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:10&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stderr call -----------------------------\n2025-05-18 13:10:14,067 - INFO - Starting test_empty_username\n2025-05-18 13:10:16,168 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\n2025-05-18 13:10:16,168 - INFO - Attempting to log in with username: \n2025-05-18 13:10:18,201 - INFO - Login button clicked\n2025-05-18 13:10:18,201 - INFO - Login with empty username attempted\n2025-05-18 13:10:18,203 - DEBUG - Checking for validation error\n2025-05-18 13:10:18,953 - DEBUG - Validation error retrieved: Please enter your email address\n2025-05-18 13:10:18,953 - DEBUG - Validation error: Please enter your email address\n2025-05-18 13:10:18,953 - INFO - Test passed: Empty username validation detected\n\n------------------------------ Captured log call -------------------------------\nINFO     test_login:test_login.py:69 Starting test_empty_username\nDEBUG    test_login:test_login.py:71 Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\nINFO     pages.login_page:login_page.py:68 Attempting to log in with username: \nINFO     pages.login_page:login_page.py:74 Login button clicked\nINFO     test_login:test_login.py:74 Login with empty username attempted\nDEBUG    pages.login_page:login_page.py:99 Checking for validation error\nDEBUG    pages.login_page:login_page.py:105 Validation error retrieved: Please enter your email address\nDEBUG    test_login:test_login.py:76 Validation error: Please enter your email address\nINFO     test_login:test_login.py:79 Test passed: Empty username validation detected\n\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
+    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.11.5&#34;, &#34;Platform&#34;: &#34;Windows-10-10.0.26100-SP0&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.3.5&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;}}, &#34;tests&#34;: {&#34;tests/test_login.py::test_valid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_valid_login&#34;, &#34;duration&#34;: &#34;00:00:15&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_valid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:15&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stderr call -----------------------------\n2025-05-18 14:24:10,500 - INFO - Starting test_valid_login\n2025-05-18 14:24:12,983 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\n2025-05-18 14:24:12,983 - INFO - Attempting to log in with username: admin@cpcgr.com\n2025-05-18 14:24:15,014 - INFO - Login button clicked\n2025-05-18 14:24:15,014 - INFO - Login attempt completed\n2025-05-18 14:24:15,015 - DEBUG - Retrieving welcome text\n2025-05-18 14:24:18,023 - DEBUG - Welcome text retrieved: Total Organizations\n2025-05-18 14:24:18,023 - DEBUG - Welcome text: Total Organizations\n2025-05-18 14:24:18,024 - INFO - Test passed: Welcome text verified\n\n------------------------------ Captured log call -------------------------------\nINFO     test_login:test_login.py:8 Starting test_valid_login\nDEBUG    test_login:test_login.py:10 Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\nINFO     pages.login_page:login_page.py:17 Attempting to log in with username: admin@cpcgr.com\nINFO     pages.login_page:login_page.py:23 Login button clicked\nINFO     test_login:test_login.py:13 Login attempt completed\nDEBUG    pages.login_page:login_page.py:26 Retrieving welcome text\nDEBUG    pages.login_page:login_page.py:31 Welcome text retrieved: Total Organizations\nDEBUG    test_login:test_login.py:15 Welcome text: Total Organizations\nINFO     test_login:test_login.py:17 Test passed: Welcome text verified\n\n&#34;}], &#34;tests/test_login.py::test_invalid_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_invalid_login&#34;, &#34;duration&#34;: &#34;00:00:10&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_invalid_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:10&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stderr call -----------------------------\n2025-05-18 14:24:22,878 - INFO - Starting test_invalid_login\n2025-05-18 14:24:24,472 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\n2025-05-18 14:24:24,472 - INFO - Attempting to log in with username: wrong_user@example.com\n2025-05-18 14:24:26,380 - INFO - Login button clicked\n2025-05-18 14:24:26,380 - INFO - Login with invalid credentials attempted\n2025-05-18 14:24:26,380 - DEBUG - Checking for error message\n2025-05-18 14:24:28,157 - DEBUG - Error message retrieved: Error\n2025-05-18 14:24:28,157 - DEBUG - Error message: Error\n2025-05-18 14:24:28,157 - INFO - Test passed: Invalid login detected\n\n------------------------------ Captured log call -------------------------------\nINFO     test_login:test_login.py:21 Starting test_invalid_login\nDEBUG    test_login:test_login.py:23 Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\nINFO     pages.login_page:login_page.py:17 Attempting to log in with username: wrong_user@example.com\nINFO     pages.login_page:login_page.py:23 Login button clicked\nINFO     test_login:test_login.py:26 Login with invalid credentials attempted\nDEBUG    pages.login_page:login_page.py:35 Checking for error message\nDEBUG    pages.login_page:login_page.py:41 Error message retrieved: Error\nDEBUG    test_login:test_login.py:28 Error message: Error\nINFO     test_login:test_login.py:31 Test passed: Invalid login detected\n\n&#34;}], &#34;tests/test_login.py::test_empty_username&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_login.py::test_empty_username&#34;, &#34;duration&#34;: &#34;00:00:09&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_login.py::test_empty_username&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:09&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stderr call -----------------------------\n2025-05-18 14:24:32,927 - INFO - Starting test_empty_username\n2025-05-18 14:24:34,504 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\n2025-05-18 14:24:34,507 - INFO - Attempting to log in with username: \n2025-05-18 14:24:36,163 - INFO - Login button clicked\n2025-05-18 14:24:36,163 - INFO - Login with empty username attempted\n2025-05-18 14:24:36,163 - DEBUG - Checking for validation error\n2025-05-18 14:24:36,903 - DEBUG - Validation error retrieved: Please enter your email address\n2025-05-18 14:24:36,903 - DEBUG - Validation error: Please enter your email address\n2025-05-18 14:24:36,903 - INFO - Test passed: Empty username validation detected\n\n------------------------------ Captured log call -------------------------------\nINFO     test_login:test_login.py:35 Starting test_empty_username\nDEBUG    test_login:test_login.py:37 Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in\nINFO     pages.login_page:login_page.py:17 Attempting to log in with username: \nINFO     pages.login_page:login_page.py:23 Login button clicked\nINFO     test_login:test_login.py:40 Login with empty username attempted\nDEBUG    pages.login_page:login_page.py:48 Checking for validation error\nDEBUG    pages.login_page:login_page.py:54 Validation error retrieved: Please enter your email address\nDEBUG    test_login:test_login.py:42 Validation error: Please enter your email address\nINFO     test_login:test_login.py:45 Test passed: Empty username validation detected\n\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
     <script>
       (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')

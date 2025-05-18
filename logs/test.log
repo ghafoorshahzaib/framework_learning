@@ -93,3 +93,32 @@
 2025-05-18 13:10:18,953 - DEBUG - Validation error retrieved: Please enter your email address
 2025-05-18 13:10:18,953 - DEBUG - Validation error: Please enter your email address
 2025-05-18 13:10:18,953 - INFO - Test passed: Empty username validation detected
+2025-05-18 14:24:05,685 - INFO - File handler added successfully
+2025-05-18 14:24:05,685 - INFO - File handler added successfully
+2025-05-18 14:24:10,500 - INFO - Starting test_valid_login
+2025-05-18 14:24:12,983 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 14:24:12,983 - INFO - Attempting to log in with username: admin@cpcgr.com
+2025-05-18 14:24:15,014 - INFO - Login button clicked
+2025-05-18 14:24:15,014 - INFO - Login attempt completed
+2025-05-18 14:24:15,015 - DEBUG - Retrieving welcome text
+2025-05-18 14:24:18,023 - DEBUG - Welcome text retrieved: Total Organizations
+2025-05-18 14:24:18,023 - DEBUG - Welcome text: Total Organizations
+2025-05-18 14:24:18,024 - INFO - Test passed: Welcome text verified
+2025-05-18 14:24:22,878 - INFO - Starting test_invalid_login
+2025-05-18 14:24:24,472 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 14:24:24,472 - INFO - Attempting to log in with username: wrong_user@example.com
+2025-05-18 14:24:26,380 - INFO - Login button clicked
+2025-05-18 14:24:26,380 - INFO - Login with invalid credentials attempted
+2025-05-18 14:24:26,380 - DEBUG - Checking for error message
+2025-05-18 14:24:28,157 - DEBUG - Error message retrieved: Error
+2025-05-18 14:24:28,157 - DEBUG - Error message: Error
+2025-05-18 14:24:28,157 - INFO - Test passed: Invalid login detected
+2025-05-18 14:24:32,927 - INFO - Starting test_empty_username
+2025-05-18 14:24:34,504 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 14:24:34,507 - INFO - Attempting to log in with username: 
+2025-05-18 14:24:36,163 - INFO - Login button clicked
+2025-05-18 14:24:36,163 - INFO - Login with empty username attempted
+2025-05-18 14:24:36,163 - DEBUG - Checking for validation error
+2025-05-18 14:24:36,903 - DEBUG - Validation error retrieved: Please enter your email address
+2025-05-18 14:24:36,903 - DEBUG - Validation error: Please enter your email address
+2025-05-18 14:24:36,903 - INFO - Test passed: Empty username validation detected
