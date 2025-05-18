@@ -1,0 +1,95 @@
+2025-05-18 12:58:21,815 - INFO - Starting test_valid_login
+2025-05-18 12:58:24,049 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 12:58:25,575 - INFO - Login button clicked
+2025-05-18 12:58:25,577 - INFO - Login attempt completed
+2025-05-18 12:58:29,213 - DEBUG - Welcome text: Total Organizations
+2025-05-18 12:58:29,214 - INFO - Test passed: Welcome text verified
+2025-05-18 12:58:37,513 - INFO - Login button clicked
+2025-05-18 12:58:47,358 - INFO - Login button clicked
+2025-05-18 13:06:19,361 - INFO - File handler added successfully
+2025-05-18 13:06:19,363 - INFO - File handler added successfully
+2025-05-18 13:06:22,384 - INFO - Starting test_valid_login
+2025-05-18 13:06:24,636 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:06:24,636 - INFO - Attempting to log in with username: admin@cpcgr.com
+2025-05-18 13:06:26,779 - INFO - Login button clicked
+2025-05-18 13:06:26,779 - INFO - Login attempt completed
+2025-05-18 13:06:26,783 - DEBUG - Retrieving welcome text
+2025-05-18 13:06:30,703 - DEBUG - Welcome text retrieved: Total Organizations
+2025-05-18 13:06:30,706 - DEBUG - Welcome text: Total Organizations
+2025-05-18 13:06:30,708 - INFO - Test passed: Welcome text verified
+2025-05-18 13:06:36,030 - INFO - Starting test_invalid_login
+2025-05-18 13:06:37,846 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:06:37,849 - INFO - Attempting to log in with username: wrong_user@example.com
+2025-05-18 13:06:40,244 - INFO - Login button clicked
+2025-05-18 13:06:40,249 - INFO - Login with invalid credentials attempted
+2025-05-18 13:06:40,249 - DEBUG - Checking for error message
+2025-05-18 13:06:42,021 - DEBUG - Error message retrieved: Error
+2025-05-18 13:06:42,023 - DEBUG - Error message: Error
+2025-05-18 13:06:42,023 - INFO - Test passed: Invalid login detected
+2025-05-18 13:06:46,791 - INFO - Starting test_empty_username
+2025-05-18 13:06:48,540 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:06:48,541 - INFO - Attempting to log in with username: 
+2025-05-18 13:06:49,957 - INFO - Login button clicked
+2025-05-18 13:06:49,957 - INFO - Login with empty username attempted
+2025-05-18 13:06:49,959 - DEBUG - Checking for validation error
+2025-05-18 13:06:50,693 - DEBUG - Validation error retrieved: Please enter your email address
+2025-05-18 13:06:50,693 - DEBUG - Validation error: Please enter your email address
+2025-05-18 13:06:50,696 - INFO - Test passed: Empty username validation detected
+2025-05-18 13:08:40,020 - INFO - File handler added successfully
+2025-05-18 13:08:40,028 - INFO - File handler added successfully
+2025-05-18 13:08:42,878 - INFO - Starting test_valid_login
+2025-05-18 13:08:44,708 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:08:44,712 - INFO - Attempting to log in with username: admin@cpcgr.com
+2025-05-18 13:08:47,041 - INFO - Login button clicked
+2025-05-18 13:08:47,043 - INFO - Login attempt completed
+2025-05-18 13:08:47,046 - DEBUG - Retrieving welcome text
+2025-05-18 13:08:50,588 - DEBUG - Welcome text retrieved: Total Organizations
+2025-05-18 13:08:50,588 - DEBUG - Welcome text: Total Organizations
+2025-05-18 13:08:50,588 - INFO - Test passed: Welcome text verified
+2025-05-18 13:08:55,624 - INFO - Starting test_invalid_login
+2025-05-18 13:08:57,081 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:08:57,081 - INFO - Attempting to log in with username: wrong_user@example.com
+2025-05-18 13:08:58,994 - INFO - Login button clicked
+2025-05-18 13:08:58,996 - INFO - Login with invalid credentials attempted
+2025-05-18 13:08:58,996 - DEBUG - Checking for error message
+2025-05-18 13:09:00,289 - DEBUG - Error message retrieved: Error
+2025-05-18 13:09:00,289 - DEBUG - Error message: Error
+2025-05-18 13:09:00,292 - INFO - Test passed: Invalid login detected
+2025-05-18 13:09:05,089 - INFO - Starting test_empty_username
+2025-05-18 13:09:06,341 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:09:06,341 - INFO - Attempting to log in with username: 
+2025-05-18 13:09:07,620 - INFO - Login button clicked
+2025-05-18 13:09:07,620 - INFO - Login with empty username attempted
+2025-05-18 13:09:07,622 - DEBUG - Checking for validation error
+2025-05-18 13:09:08,360 - DEBUG - Validation error retrieved: Please enter your email address
+2025-05-18 13:09:08,360 - DEBUG - Validation error: Please enter your email address
+2025-05-18 13:09:08,360 - INFO - Test passed: Empty username validation detected
+2025-05-18 13:09:48,676 - INFO - File handler added successfully
+2025-05-18 13:09:48,678 - INFO - File handler added successfully
+2025-05-18 13:09:51,251 - INFO - Starting test_valid_login
+2025-05-18 13:09:53,278 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:09:53,279 - INFO - Attempting to log in with username: admin@cpcgr.com
+2025-05-18 13:09:55,544 - INFO - Login button clicked
+2025-05-18 13:09:55,544 - INFO - Login attempt completed
+2025-05-18 13:09:55,548 - DEBUG - Retrieving welcome text
+2025-05-18 13:09:59,063 - DEBUG - Welcome text retrieved: Total Organizations
+2025-05-18 13:09:59,064 - DEBUG - Welcome text: Total Organizations
+2025-05-18 13:09:59,064 - INFO - Test passed: Welcome text verified
+2025-05-18 13:10:04,068 - INFO - Starting test_invalid_login
+2025-05-18 13:10:05,746 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:10:05,746 - INFO - Attempting to log in with username: wrong_user@example.com
+2025-05-18 13:10:07,887 - INFO - Login button clicked
+2025-05-18 13:10:07,888 - INFO - Login with invalid credentials attempted
+2025-05-18 13:10:07,888 - DEBUG - Checking for error message
+2025-05-18 13:10:09,112 - DEBUG - Error message retrieved: Error
+2025-05-18 13:10:09,112 - DEBUG - Error message: Error
+2025-05-18 13:10:09,112 - INFO - Test passed: Invalid login detected
+2025-05-18 13:10:14,067 - INFO - Starting test_empty_username
+2025-05-18 13:10:16,168 - DEBUG - Navigated to login page: https://cpcg-qa-admin.appnofy.com/auth/sign-in
+2025-05-18 13:10:16,168 - INFO - Attempting to log in with username: 
+2025-05-18 13:10:18,201 - INFO - Login button clicked
+2025-05-18 13:10:18,201 - INFO - Login with empty username attempted
+2025-05-18 13:10:18,203 - DEBUG - Checking for validation error
+2025-05-18 13:10:18,953 - DEBUG - Validation error retrieved: Please enter your email address
+2025-05-18 13:10:18,953 - DEBUG - Validation error: Please enter your email address
+2025-05-18 13:10:18,953 - INFO - Test passed: Empty username validation detected
